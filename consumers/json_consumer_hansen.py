@@ -6,10 +6,10 @@ Consume json messages from a Kafka topic and process them.
 JSON is a set of key:value pairs. 
 
 Example serialized Kafka message
-"{\"message\": \"I love Python!\", \"author\": \"Eve\"}"
+"{\"park\": \"Wind Cave National Park\", \"state\": \"South Dakota\"}"
 
 Example JSON message (after deserialization) to be analyzed
-{"message": "I love Python!", "author": "Eve"}
+{"park": "Wind Cave National Park", "state": "South Dakota"}
 
 """
 
@@ -63,7 +63,7 @@ def get_kafka_consumer_group_id() -> int:
 # pass in the int function as the default_factory
 # to ensure counts are integers
 # {author: count} author is the key and count is the value
-author_counts = defaultdict(int)
+park_counts = defaultdict(int)
 
 
 #####################################
@@ -90,15 +90,15 @@ def process_message(message: str) -> None:
 
         # Ensure it's a dictionary before accessing fields
         if isinstance(message_dict, dict):
-            # Extract the 'author' field from the Python dictionary
-            author = message_dict.get("author", "unknown")
-            logger.info(f"Message received from author: {author}")
+            # Extract the 'park' field from the Python dictionary
+            park = message_dict.get("park", "unknown")
+            logger.info(f"National Park listed: {park}")
 
             # Increment the count for the author
-            author_counts[author] += 1
+            park_counts[park] += 1
 
             # Log the updated counts
-            logger.info(f"Updated author counts: {dict(author_counts)}")
+            logger.info(f"Updated park counts: {dict(park_counts)}")
         else:
             logger.error(f"Expected a dictionary but got: {type(message_dict)}")
 
