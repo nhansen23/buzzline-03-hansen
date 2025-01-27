@@ -58,11 +58,11 @@ def get_kafka_consumer_group_id() -> int:
 # Set up Data Store to hold author counts
 #####################################
 
-# Initialize a dictionary to store author counts
+# Initialize a dictionary to store park counts
 # The defaultdict type initializes counts to 0
 # pass in the int function as the default_factory
 # to ensure counts are integers
-# {author: count} author is the key and count is the value
+# {park: count} park is the key and count is the value
 park_counts = defaultdict(int)
 
 
@@ -94,13 +94,18 @@ def process_message(message: str) -> None:
             park = message_dict.get("park", "unknown")
             logger.info(f"National Park listed: {park}")
 
-            # Increment the count for the author
+            # Increment the count for the park
             park_counts[park] += 1
 
             # Log the updated counts
             logger.info(f"Updated park counts: {dict(park_counts)}")
         else:
             logger.error(f"Expected a dictionary but got: {type(message_dict)}")
+
+        # monitor and alert when see a park from your home state
+        if message_dict.get("state","South Dakota"):
+            print(f"You found a park in your home state! \n{message}")
+            logger.warning(f"National Park in Home State Found! \n{message}")
 
     except json.JSONDecodeError:
         logger.error(f"Invalid JSON message: {message}")
