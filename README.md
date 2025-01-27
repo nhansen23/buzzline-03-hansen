@@ -1,18 +1,7 @@
-# buzzline-03-case
-
-Streaming data does not have to be simple text.
-Many of us are familiar with streaming video content and audio (e.g. music) files. 
-
-Streaming data can be structured (e.g. csv files) or
-semi-structured (e.g. json data). 
-
-We'll work with two different types of data, and so we'll use two different Kafka topic names. 
-See [.env](.env). 
-
+# buzzline-03-hansen
 
 ## Task 1. Use Tools from Module 1 and 2
 
-Before starting, ensure you have completed the setup tasks in <https://github.com/denisecase/buzzline-01-case> and <https://github.com/denisecase/buzzline-02-case> first. 
 Python 3.11 is required. 
 
 ## Task 2. Copy This Example Project and Rename
@@ -25,7 +14,6 @@ Follow the instructions in [FORK-THIS-REPO.md](https://github.com/denisecase/buz
 
 ## Task 3. Manage Local Project Virtual Environment
 
-Follow the instructions in [MANAGE-VENV.md](https://github.com/denisecase/buzzline-01-case/blob/main/docs/MANAGE-VENV.md) to:
 1. Create your .venv
 2. Activate .venv
 3. Install the required dependencies using requirements.txt.
@@ -33,10 +21,9 @@ Follow the instructions in [MANAGE-VENV.md](https://github.com/denisecase/buzzli
 ## Task 4. Start Zookeeper and Kafka (2 Terminals)
 
 If Zookeeper and Kafka are not already running, you'll need to restart them.
-See instructions at [SETUP-KAFKA.md] to:
 
-1. Start Zookeeper Service ([link](https://github.com/denisecase/buzzline-02-case/blob/main/docs/SETUP-KAFKA.md#step-7-start-zookeeper-service-terminal-1))
-2. Start Kafka ([link](https://github.com/denisecase/buzzline-02-case/blob/main/docs/SETUP-KAFKA.md#step-8-start-kafka-terminal-2))
+1. Start Zookeeper Service 
+2. Start Kafka 
 
 ## Task 5. Start a JSON Producer
 
@@ -55,9 +42,6 @@ Mac/Linux:
 source .venv/bin/activate
 python3 -m producers.json_producer_case
 ```
-
-What did we name the topic used with JSON data? 
-Hint: See the producer code and [.env](.env).
 
 ## Task 6. Start a JSON Consumer
 
@@ -78,9 +62,6 @@ source .venv/bin/activate
 python3 -m consumers.json_consumer_case
 ```
 
-What did we name the topic used with JSON data? 
-Hint: See the consumer code and [.env](.env).
-
 ## Task 7. Start a CSV Producer
 
 Follow a similar process to start the csv producer. 
@@ -91,9 +72,6 @@ You will need to:
 4. Know how to use the -m (module flag to run your file as a module).
 5. Know the full name of the module you want to run. Hint: Look in the producers folder.
 
-What did we name the topic used with csv data? 
-Hint: See the producer code and [.env](.env).
-
 ## Task 8. Start a CSV Consumer
 
 Follow a similar process to start the csv consumer. 
@@ -103,9 +81,6 @@ You will need to:
 3. Know the command that works on your machine to execute python (e.g. py or python3).
 4. Know how to use the -m (module flag to run your file as a module).
 5. Know the full name of the module you want to run. Hint: Look in the consumers folder.
-
-What did we name the topic used with csv data? 
-Hint: See the consumer code and [.env](.env).
 
 ## About the Smart Smoker (CSV Example)
 
