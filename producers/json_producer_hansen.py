@@ -4,10 +4,10 @@ json_producer_hansen.py
 Stream JSON data to a Kafka topic.
 
 Example JSON message
-{"message": "I love Python!", "author": "Eve"}
+{"park": "Wind Cave National Park", "state": "South Dakota"}
 
 Example serialized to Kafka message
-"{\"message\": \"I love Python!\", \"author\": \"Eve\"}"
+"{\"park\": \"Wind Cave National Park\", \"state\": \"South Dakota\"}"
 
 """
 
@@ -72,7 +72,7 @@ DATA_FOLDER: pathlib.Path = PROJECT_ROOT.joinpath("data")
 logger.info(f"Data folder: {DATA_FOLDER}")
 
 # Set the name of the data file
-DATA_FILE: pathlib.Path = DATA_FOLDER.joinpath("buzz.json")
+DATA_FILE: pathlib.Path = DATA_FOLDER.joinpath("np.json")
 logger.info(f"Data file: {DATA_FILE}")
 
 #####################################
