@@ -1,0 +1,158 @@
+[
+    {
+        "park": "Acadia National Park",
+        "state": "Maine"
+    },
+    {
+        "park": "Arches National Park",
+        "state": "Utah"
+    },
+    {
+        "park": "Badlands National Park",
+        "state": "South Dakota"
+    },
+    {
+        "park": "Biscayne National Park",
+        "state": "Florida"
+    },
+    {
+        "park": "Bryce Canyon National Park",
+        "state": "Utah"
+    },
+    {
+        "park": "Canyonlands National Park",
+        "state": "Utah"
+    },
+    {
+        "park": "Capitol Reef National Park",
+        "state": "Utah"
+    },
+    {
+        "park": "Channels Islands National Park",
+        "state": "California"
+    },
+    {
+        "park": "Crater Lake National Park",
+        "state": "Oregon"
+    },
+    {
+        "park": "Cuyahoga Valley National Park",
+        "state": "Ohio"
+    },
+    {
+        "park": "Death Valley National Park",
+        "state": "California"
+    },
+    {
+        "park": "Dry Tortugas National Park",
+        "state": "Florida"
+    },
+    {
+        "park": "Everglades National Park",
+        "state": "Florida"
+    },
+    {
+        "park": "Glacier National Park",
+        "state": "Montana"
+    },
+    {
+        "park": "Glacier Bay National Park",
+        "state": "Alaska"
+    },
+    {
+        "park": "Grand Canyon National Park",
+        "state": "Arizona"
+    },
+    {
+        "park": "Grand Teton National Park",
+        "state": "Wyoming"
+    },
+    {
+        "park": "Gread Sand Dunes National Park",
+        "state": "Colorado"
+    },
+    {
+        "park": "Haleakala National Park",
+        "state": "Hawaii"
+    },
+    {
+        "park": "Hawai'i Volcanoes National Park",
+        "state": "Hawaii"
+    },
+    {
+        "park": "Hot Springs National Park",
+        "state": "Arkansas"
+    },
+    {
+        "park": "Indiana Dunes National Park",
+        "state": "Indiana"
+    },
+    {
+        "park": "Joshua Tree National Park",
+        "state": "California"
+    },
+    {
+        "park": "Lassen Volcanic National Park",
+        "state": "California"
+    },
+    {
+        "park": "Mammoth Cave National Park",
+        "state": "Kentucky"
+    },
+    {
+        "park": "Mesa Verde National Park",
+        "state": "Colorado"
+    },
+    {
+        "park": "Mount Rainier National Park",
+        "state": "Washington"
+    },
+    {
+        "park": "North Cascades National Park",
+        "state": "Washington"
+    },
+    {
+        "park": "Olympic National Park",
+        "state": "Washington"
+    },
+    {
+        "park": "Petrified Forest National Park",
+        "state": "Arizona"
+    },
+    {
+        "park": "Pinnacles National Park",
+        "state": "California"
+    },
+    {
+        "park": "Redwood National Park",
+        "state": "California"
+    },
+    {
+        "park": "Saguaro National Park",
+        "state": "Arizona"
+    },
+    {
+        "park": "Shenandoah National Park",
+        "state": "Virginia"
+    },
+    {
+        "park": "Theodore Roosevelt National Park",
+        "state": "North Dakota"
+    },
+    {
+        "park": "Virgin Islands National Park",
+        "state": "U.s. Virgin Islands"
+    },
+    {
+        "park": "Wind Cave National Park",
+        "state": "South Dakota"
+    },
+    {
+        "park": "Yellowstone National Park",
+        "state": "wyoming, Montana, and Idaho"
+    },
+    {
+        "park": "Zion National Park",
+        "state": "Utah"
+    }
+]
