@@ -19,6 +19,7 @@ Example JSON message (after deserialization) to be analyzed
 
 # Import packages from Python Standard Library
 import os
+import random
 import json  # handle JSON parsing
 from collections import defaultdict  # data structure for counting author occurrences
 
@@ -69,9 +70,16 @@ park_counts = defaultdict(int)
 #####################################
 # Function to process a single message
 # #####################################
+def extract_components(message_dict: dict) -> list:
+    return list(message_dict.items())
 
+def get_random_components(components: list, num_components: int) -> list:
+    if num_components > len(components):
+        raise ValueError("Number of components to select exceeds the number of available components.")
+    random_components = random.sample(components, num_components)
+    return random_components
 
-def process_message(message: str) -> None:
+def process_message(message: str, num_random_components: int=32) -> None:
     """
     Process a single JSON message from Kafka.
 
@@ -93,19 +101,25 @@ def process_message(message: str) -> None:
             # Extract the 'park' field from the Python dictionary
             park = message_dict.get("park", "unknown")
             logger.info(f"National Park listed: {park}")
-
+        
             # Increment the count for the park
             park_counts[park] += 1
 
             # Log the updated counts
             logger.info(f"Updated park counts: {dict(park_counts)}")
+
+            components = extract_components(message_dict)
+            random_components = get_random_components(components, num_random_components)
+            logger.info(f"Random components: {random_components}")
+            print(f"Random components: {random_components}")
+
+            # monitor and alert when see a park from your home state
+            if message_dict.get("state","").lower()=="South Dakota":
+                print(f"You found a park in your home state! \n{message}")
+                logger.warning(f"National Park in Home State Found! \n{message}")
+
         else:
             logger.error(f"Expected a dictionary but got: {type(message_dict)}")
-
-        # monitor and alert when see a park from your home state
-        if message_dict.get("state","South Dakota"):
-            print(f"You found a park in your home state! \n{message}")
-            logger.warning(f"National Park in Home State Found! \n{message}")
 
     except json.JSONDecodeError:
         logger.error(f"Invalid JSON message: {message}")
