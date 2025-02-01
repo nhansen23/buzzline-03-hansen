@@ -42,46 +42,46 @@ load_dotenv()
 
 def get_kafka_topic() -> str:
     """Fetch Kafka topic from environment or use default."""
-    topic = os.getenv("SMOKER_TOPIC", "unknown_topic")
+    topic = os.getenv("CAR_SALES_TOPIC", "unknown_topic")
     logger.info(f"Kafka topic: {topic}")
     return topic
 
 
 def get_kafka_consumer_group_id() -> str:
     """Fetch Kafka consumer group id from environment or use default."""
-    group_id: str = os.getenv("SMOKER_CONSUMER_GROUP_ID", "default_group")
+    group_id: str = os.getenv("CAR_SALES_GROUP_ID", "default_group")
     logger.info(f"Kafka consumer group id: {group_id}")
     return group_id
 
 
 def get_stall_threshold() -> float:
     """Fetch message interval from environment or use default."""
-    temp_variation = float(os.getenv("SMOKER_STALL_THRESHOLD_F", 0.2))
-    logger.info(f"Max stall temperature range: {temp_variation} F")
-    return temp_variation
+    sales_variation = int(os.getenv("CAR_SALES_THRESHOLD_F", 1000))
+    logger.info(f"Max car sale range: $ {sales_variation}")
+    return sales_variation
 
 
 def get_rolling_window_size() -> int:
     """Fetch rolling window size from environment or use default."""
-    window_size = int(os.getenv("SMOKER_ROLLING_WINDOW_SIZE", 5))
+    window_size = int(os.getenv("CAR_SALES_WINDOW_SIZE", 9))
     logger.info(f"Rolling window size: {window_size}")
     return window_size
 
 
-#####################################
-# Define a function to detect a stall
-#####################################
+#########################################
+# Define a function to detect a max sale
+#########################################
 
 
-def detect_stall(rolling_window_deque: deque) -> bool:
+def detect_max(rolling_window_deque: deque) -> bool:
     """
-    Detect a temperature stall based on the rolling window.
+    Detect a sales max based on the rolling window.
 
     Args:
-        rolling_window_deque (deque): Rolling window of temperature readings.
+        rolling_window_deque (deque): Rolling window of sale prices.
 
     Returns:
-        bool: True if a stall is detected, False otherwise.
+        bool: True if a max price is detected, False otherwise.
     """
     WINDOW_SIZE: int = get_rolling_window_size()
     if len(rolling_window_deque) < WINDOW_SIZE:
@@ -92,14 +92,12 @@ def detect_stall(rolling_window_deque: deque) -> bool:
         )
         return False
 
-    # Once the deque is full we can calculate the temperature range
+    # Once the deque is full we can calculate the sales range
     # Use Python's built-in min() and max() functions
-    # If the range is less than or equal to the threshold, we have a stall
-    # And our food is ready :)
-    temp_range = max(rolling_window_deque) - min(rolling_window_deque)
-    is_stalled: bool = temp_range <= get_stall_threshold()
-    logger.debug(f"Temperature range: {temp_range}°F. Stalled: {is_stalled}")
-    return is_stalled
+    sales_max = max(rolling_window_deque)
+    #is_stalled: bool = sales_max <= get_max_threshold()
+    logger.debug(f"Max Price: {sales_max}")
+    return sales_max
 
 
 #####################################
@@ -122,22 +120,22 @@ def process_message(message: str, rolling_window: deque, window_size: int) -> No
 
         # Parse the JSON string into a Python dictionary
         data: dict = json.loads(message)
-        temperature = data.get("temperature")
-        timestamp = data.get("timestamp")
+        price = data.get("price")
+        make = data.get("make")
         logger.info(f"Processed JSON message: {data}")
 
         # Ensure the required fields are present
-        if temperature is None or timestamp is None:
+        if price is None or make is None:
             logger.error(f"Invalid message format: {message}")
             return
 
         # Append the temperature reading to the rolling window
-        rolling_window.append(temperature)
+        rolling_window.append(price)
 
-        # Check for a stall
-        if detect_stall(rolling_window):
+        # Check for max price
+        if detect_max(rolling_window):
             logger.info(
-                f"STALL DETECTED at {timestamp}: Temp stable at {temperature}°F over last {window_size} readings."
+                f"Max price detected for {make}: Max price at ${price} over last {window_size} readings."
             )
 
     except json.JSONDecodeError as e:

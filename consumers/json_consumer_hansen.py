@@ -79,7 +79,7 @@ def get_random_components(components: list, num_components: int) -> list:
     random_components = random.sample(components, num_components)
     return random_components
 
-def process_message(message: str, num_random_components: int=32) -> None:
+def process_message(message: str, num_random_components: int=2) -> None:
     """
     Process a single JSON message from Kafka.
 
